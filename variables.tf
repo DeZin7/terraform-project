@@ -7,7 +7,7 @@ variable "server_port" {
 variable "alb_name" {
     description = "the name of the ALB"
     type        = string
-    default     = "terraform-asg-terraform_asg_example"
+    default     = "terraform-asg-example"
 }
 
 variable "instance_security_group_name" {

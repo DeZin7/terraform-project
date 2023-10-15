@@ -2,10 +2,10 @@ provider "aws" {
     region = "us-west-1"
 } 
 
-resource "aws_instance" "example" {
-    ami = "ami-04d1dcfb793f6fa37"
+resource "aws_launch_configuration" "example" {
+    image_id = "ami-04d1dcfb793f6fa37"
     instance_type = "t2.micro"
-    vpc_security_group_ids = [aws_security_group.instance.id] 
+    security_groups = [aws_security_group.instance.id] 
 
     user_data = <<-EOF
                 #!/bin/bash
@@ -92,13 +92,13 @@ resource "aws_lb_target_group" "asg" {
     vpc_id   = data.aws_vpc.default.id
 
     health_check {
-        path               = "/"
-        protocol           = "HTTP"
-        matcher            = "200"
-        interval           = 15
-        timeout            = 3
-        healthy_threshold  = 2
-        unhealthy_treshold = 2
+        path                = "/"
+        protocol            = "HTTP"
+        matcher             = "200"
+        interval            = 15
+        timeout             = 3
+        healthy_threshold   = 2
+        unhealthy_threshold = 2
     }
 }
 
@@ -108,7 +108,7 @@ resource "aws_lb_listener_rule" "asg" {
 
     condition {
         path_pattern {
-            values = [*]
+            values = ["*"]
         }
     }
 
