@@ -118,7 +118,7 @@ resource "aws_lb_listener_rule" "asg" {
     }
 }
 
-resource "aws_security_group" "slb" {
+resource "aws_security_group" "alb" {
 
     name = var.alb_security_group_name
 
